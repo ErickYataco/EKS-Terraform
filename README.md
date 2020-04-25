@@ -4,13 +4,14 @@ Project to deploy a standar EKS cluster
 
 ## Prerequisites
 
+- Terraform 
 - Kubectl
 - aws-iam-authenticator
 
 ## TODO
 
 - [x] Terraform with standar configuration to EKS 
-- [ ] Script to automatically set kubeconfig on deploy machine
+- [x] Script to automatically set kubeconfig on deploy machine
 - [ ] Add istio as part of deploy
 - [ ] Add settiable yaml project as part of deploy 
 - [ ] Add helm to control yaml project deploy

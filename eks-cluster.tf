@@ -21,3 +21,9 @@ resource "aws_eks_cluster" "torus" {
   ]
 }
 
+resource "null_resource" "kube_config"{
+  provisioner "local-exec" {
+      command = "./run.sh" 
+  }
+  depends_on = [aws_eks_cluster.torus]  
+}
