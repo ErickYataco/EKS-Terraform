@@ -5,4 +5,5 @@ ssh/
 .terraform
 *.zip
 node_modules
-config-map.yml
+*.yaml
+*.local

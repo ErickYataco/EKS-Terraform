@@ -15,7 +15,7 @@ resource "aws_security_group" "eks-node" {
     "Name"                                      = "sg-node-${var.project}-${var.env}"
     "Enviroment"                                = var.env
     "Project"                                   = var.project 
-    "kubernetes.io/cluster/${var.cluster-name}" = "owned"
+    "kubernetes.io/cluster/${var.cluster-name}-${var.project}-${var.env}" = "owned"
   }
 }
 

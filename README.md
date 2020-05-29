@@ -5,6 +5,7 @@ Project to deploy a standar EKS cluster
 ## Prerequisites
 
 - Terraform 
+- helm
 - Kubectl
 - aws-iam-authenticator
 

@@ -1,8 +1,6 @@
 # outputs
 locals {
   kubeconfig = <<KUBECONFIG
-
-
 apiVersion: v1
 clusters:
 - cluster:
@@ -26,7 +24,7 @@ users:
       args:
         - "token"
         - "-i"
-        - "${var.cluster-name}"
+        - "${var.cluster-name}-${var.project}-${var.env}"
 KUBECONFIG
 
 }
@@ -39,8 +37,6 @@ output "kubeconfig" {
 
 locals {
   config-map-aws-auth = <<CONFIGMAPAWSAUTH
-
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -58,6 +54,6 @@ CONFIGMAPAWSAUTH
 }
 
 output "config-map-aws-auth" {
-value = local.config-map-aws-auth
+  value = local.config-map-aws-auth
 }
 
