@@ -2,7 +2,7 @@
 resource "aws_security_group" "eks-node" {
   name        = "eksNodeSecurityGroup"
   description = "Security group for all nodes in the cluster"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = "${module.vpc.vpc_id}"
 
   egress {
     from_port   = 0
@@ -13,8 +13,8 @@ resource "aws_security_group" "eks-node" {
 
   tags = {
     "Name"                                      = "sg-node-${var.project}-${var.env}"
-    "Enviroment"                                = var.env
-    "Project"                                   = var.project 
+    "Enviroment"                                = "${var.env}"
+    "Project"                                   = "${var.project}" 
     "kubernetes.io/cluster/${var.cluster-name}-${var.project}-${var.env}" = "owned"
   }
 }
@@ -23,8 +23,8 @@ resource "aws_security_group_rule" "eks-node-ingress-self" {
   description              = "Allow node to communicate with each other"
   from_port                = 0
   protocol                 = "-1"
-  security_group_id        = aws_security_group.eks-node.id
-  source_security_group_id = aws_security_group.eks-node.id
+  security_group_id        = "${aws_security_group.eks-node.id}"
+  source_security_group_id = "${aws_security_group.eks-node.id}"
   to_port                  = 65535
   type                     = "ingress"
 }
@@ -33,8 +33,8 @@ resource "aws_security_group_rule" "eks-node-ingress-cluster" {
   description              = "Allow worker Kubelets and pods to receive communication from the cluster control plane"
   from_port                = 1025
   protocol                 = "tcp"
-  security_group_id        = aws_security_group.eks-node.id
-  source_security_group_id = aws_security_group.eks-control-plane.id
+  security_group_id        = "${aws_security_group.eks-node.id}"
+  source_security_group_id = "${aws_security_group.eks-control-plane.id}"
   to_port                  = 65535
   type                     = "ingress"
 }

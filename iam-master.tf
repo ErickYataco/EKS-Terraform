@@ -20,18 +20,18 @@ POLICY
 
 resource "aws_iam_role_policy_attachment" "eks-control-plane-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role = aws_iam_role.eks-control-plane.name
+  role = "${aws_iam_role.eks-control-plane.name}"
 }
 
 resource "aws_iam_role_policy_attachment" "eks-control-plane-AmazonEKSServicePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-  role = aws_iam_role.eks-control-plane.name
+  role = "${aws_iam_role.eks-control-plane.name}"
 }
 
 # If no loadbalancer was ever created in this region, then this following role is necessary
 resource "aws_iam_role_policy" "eks-control-plane-service-linked-role" {
   name = "service-linked-role"
-  role = aws_iam_role.eks-control-plane.name
+  role = "${aws_iam_role.eks-control-plane.name}"
 
   policy = <<EOF
 {

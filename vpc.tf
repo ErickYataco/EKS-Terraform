@@ -5,7 +5,7 @@ module "vpc" {
   name = "vpc-${var.project}-${var.env}"
   cidr = "10.0.0.0/16"
 
-  azs             = slice(data.aws_availability_zones.available.names, 0, 3)
+  azs             = slice("${data.aws_availability_zones.available.names}", 0, 3)
   private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
@@ -14,8 +14,8 @@ module "vpc" {
 
   tags = {
     "Name"                                      = "vpc-${var.project}-${var.env}"
-    "Enviroment"                                = var.env
-    "Project"                                   = var.project    
+    "Enviroment"                                = "${var.env}"
+    "Project"                                   = "${var.project}"    
     "kubernetes.io/cluster/${var.cluster-name}" = "shared"
   }
 }
