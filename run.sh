@@ -62,6 +62,4 @@ do
 done
 echo ">>> Github deploy key is ready"
 
-
-
 echo '4: deploy repo'
